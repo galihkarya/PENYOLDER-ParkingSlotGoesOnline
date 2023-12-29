@@ -7,8 +7,8 @@
 const int ledPin = D4; // pin LED
 
 // WiFi
-const char *ssid = "SGTA";         // Enter your WiFi name
-const char *password = "bsry4421"; // Enter WiFi password
+const char *ssid = "Galaxy A33 5G 8347";         // Enter your WiFi name
+const char *password = "kedo9581"; // Enter WiFi password
 
 // MQTT Broker
 const char *mqtt_broker = "broker.emqx.io";
