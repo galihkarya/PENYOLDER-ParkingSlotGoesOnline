@@ -73,6 +73,7 @@ Berikut adalah kodingan untuk sisi node.
 ```cpp
 #include <ESP8266WiFi.h>
 #include <espnow.h>
+#include <Ticker.h>
 
 // REPLACE WITH RECEIVER MAC Address
 uint8_t broadcastAddress[] = {0x24, 0xD7, 0xEB, 0xC9, 0x23, 0x45};
@@ -90,7 +91,7 @@ typedef struct struct_message
 struct_message myData;
 
 unsigned long lastTime = 0;
-unsigned long timerDelay = 5000; // send readings timer
+Ticker timer;
 
 // Callback when data is sent
 void OnDataSent(uint8_t *mac_addr, uint8_t sendStatus)
@@ -104,6 +105,30 @@ void OnDataSent(uint8_t *mac_addr, uint8_t sendStatus)
   {
     Serial.println("Delivery fail");
   }
+}
+
+void measureAndSendData()
+{
+  digitalWrite(triggerPin, LOW);
+  delayMicroseconds(2);
+  digitalWrite(triggerPin, HIGH);
+  delayMicroseconds(10);
+  digitalWrite(triggerPin, LOW);
+
+  long duration = pulseIn(echoPin, HIGH);
+  int distance = duration * 0.034 / 2;
+
+  Serial.print("Distance: ");
+  Serial.print(distance);
+  Serial.println(" cm");
+
+  // Set values to send
+  char distance_str[8];
+  snprintf(distance_str, sizeof(distance_str), "%d", distance);
+  strcpy(myData.send_data, distance_str);
+
+  // Send message via ESP-NOW
+  esp_now_send(broadcastAddress, (uint8_t *)&myData, sizeof(myData));
 }
 
 void setup()
@@ -130,40 +155,14 @@ void setup()
 
   // Register peer
   esp_now_add_peer(broadcastAddress, ESP_NOW_ROLE_SLAVE, 1, NULL, 0);
+
+  // Set up the task scheduler to run measureAndSendData every 5000 milliseconds
+  timer.attach_ms(5000, measureAndSendData);
 }
 
 void loop()
 {
-  if ((millis() - lastTime) > timerDelay)
-  {
-
-    digitalWrite(triggerPin, LOW);
-    delayMicroseconds(2);
-    digitalWrite(triggerPin, HIGH);
-    delayMicroseconds(10);
-    digitalWrite(triggerPin, LOW);
-
-    long duration = pulseIn(echoPin, HIGH);
-    int distance = duration * 0.034 / 2;
-
-    Serial.print("Distance: ");
-    Serial.print(distance);
-    Serial.println(" cm");
-
-    // Set values to send
-    char distance_str[8];
-    // String distanceString = String(distance);
-    // distanceString.toCharArray(distance_str, sizeof(distance_str));
-
-    snprintf(distance_str, sizeof(distance_str), "%d", distance);
-
-    strcpy(myData.send_data, distance_str);
-
-    // Send message via ESP-NOW
-    esp_now_send(broadcastAddress, (uint8_t *)&myData, sizeof(myData));
-
-    lastTime = millis();
-  }
+  // Loop is now empty or can be used for other non-time-sensitive tasks
 }
 ```
 
@@ -178,8 +177,8 @@ Dan, berikut adalah kodingan untuk sisi gateaway.
 const int ledPin = D4; // pin LED
 
 // WiFi
-const char *ssid = "SGTA";         // Enter your WiFi name
-const char *password = "bsry4421"; // Enter WiFi password
+const char *ssid = "Galaxy A33 5G 8347";         // Enter your WiFi name
+const char *password = "kedo9581"; // Enter WiFi password
 
 // MQTT Broker
 const char *mqtt_broker = "broker.emqx.io";
