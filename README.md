@@ -326,9 +326,11 @@ Kelompok kami menggunakan model *gauge* untuk memvisualisasikan jumlah parkiran 
 
 ## Finalisasi
 ![Screenshot 2023-12-26 203656](https://hackmd.io/_uploads/rkAmw8OwT.png)
+
 Gambar 9: Parkiran kosong
 
 ![Screenshot 2023-12-26 203714](https://hackmd.io/_uploads/ByAmP8uDT.png)
+
 Gambar 10: Parkiran terisi
 
 **Pemikiran Akhir**
