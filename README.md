@@ -309,9 +309,6 @@ Selanjutnya data dikirim ke broker. Pada tahap ini, gateaway membutuhkan koneksi
 
 Setelah data sampai di broker, pengontrolan jarak jauh dapat dilakukan menggunakan dashboard NodeRed. 
 
-
-
-
 ![image](https://hackmd.io/_uploads/SJr_rRIDp.png)
 Gambar 7: Flow Node NodeRed
 
@@ -325,12 +322,12 @@ Kelompok kami menggunakan model *gauge* untuk memvisualisasikan jumlah parkiran 
 
 ## Finalisasi
 ![Screenshot 2023-12-26 203656](https://hackmd.io/_uploads/rkAmw8OwT.png)
-
 Gambar 9: Parkiran kosong
 
 ![Screenshot 2023-12-26 203714](https://hackmd.io/_uploads/ByAmP8uDT.png)
-
 Gambar 10: Parkiran terisi
+
+[Video Demo](https://youtu.be/6gN74BSgQqc)
 
 **Pemikiran Akhir**
 Hasil akhir dari proyek yang sudah kelompok kami kerjakan sedikit berbeda dengan apa yang kami ajukan di awal. Hal tersebut terjadi karena adanya *error* yang masih belum bisa kami perbaiki. Namun, secara umum kelompok kami sudah memahami konsep dasar dari IoT sendiri. 
