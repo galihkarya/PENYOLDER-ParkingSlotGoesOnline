@@ -3,6 +3,10 @@
 		{
 			"name": "coba-espnow",
 			"path": ".."
+		},
+		{
+			"name": "send_to_broker",
+			"path": "../../send_to_broker"
 		}
 	],
 	"settings": {}
