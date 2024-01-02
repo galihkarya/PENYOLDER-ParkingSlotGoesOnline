@@ -115,7 +115,6 @@ typedef struct struct_message
 // Create a struct_message called myData
 struct_message myData;
 
-unsigned long lastTime = 0;
 Ticker timer;
 
 // Callback when data is sent
