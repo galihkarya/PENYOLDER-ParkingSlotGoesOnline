@@ -1,5 +1,7 @@
 # **Cara Membuat Sistem Parkir Menjadi *Online* Menggunakan Ultrasonik dan ESP D1 Mini (ESP8266)**
 
+github: https://github.com/galihkarya/PENYOLDER-ParkingSlotGoesOnline
+
 Tujuan proyek ini adalah untuk memenuhi tugas besar kelas IoT Universitas Telkom semester ganjil 2023. 
 
 Kelompok: Penyolder
